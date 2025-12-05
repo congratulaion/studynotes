@@ -16,8 +16,9 @@ header, footer {
 }
 
 header h1 {
+  font-size: 32px;   /* ✅ 기본 h1 크기 */
+  font-weight: bold;
   margin: 0;
-  font-size: 24px;
 }
 
 /* 공통 섹션 박스: 캘린더와 동일한 상자 스타일 */
