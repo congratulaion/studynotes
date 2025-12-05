@@ -12,7 +12,8 @@ function renderExams() {
 
   exams.forEach((exam, index) => {
     const li = document.createElement("li");
-    li.textContent = `${exam.name} - ${exam.date}`;
+    const dday = getDDay(date);
+    li.textContent = `${title} - ${date} (${dday})`;
 
     const btn = document.createElement("button");
     btn.textContent = "삭제";
