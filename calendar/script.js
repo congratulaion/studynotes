@@ -1,7 +1,14 @@
+const form = document.getElementById("exam-form");
+const examName = document.getElementById("exam-name");
+const examDate = document.getElementById("exam-date");
+const examList = document.getElementById("exam-list");
+
+let exams = JSON.parse(localStorage.getItem("exams")) || [];
+
 // ✅ D-Day 계산 함수
-function getDDay(examDate) {
+function getDDay(date) {
   const today = new Date();
-  const exam = new Date(examDate);
+  const exam = new Date(date);
 
   today.setHours(0, 0, 0, 0);
   exam.setHours(0, 0, 0, 0);
@@ -14,94 +21,46 @@ function getDDay(examDate) {
   return `D+${Math.abs(days)}`;
 }
 
-const form = document.getElementById("exam-form");
-const titleInput = document.getElementById("exam-title");
-const dateInput = document.getElementById("exam-date");
-const examList = document.getElementById("exam-list");
-const calendarGrid = document.getElementById("calendar-grid");
-
-// ✅ 시험 불러오기
-function loadExams() {
-  const exams = JSON.parse(localStorage.getItem("examList")) || [];
+// ✅ 화면 출력 함수
+function renderExams() {
   examList.innerHTML = "";
 
   exams.forEach((exam, index) => {
     const li = document.createElement("li");
 
-    const dday = getDDay(exam.date);
-    li.textContent = `${exam.title} - ${exam.date} (${dday})`;
+    li.innerHTML = `
+      <span>${exam.name} (${exam.date}) - ${getDDay(exam.date)}</span>
+      <button class="delete-btn" onclick="deleteExam(${index})">삭제</button>
+    `;
 
-    const delBtn = document.createElement("button");
-    delBtn.textContent = "삭제";
-    delBtn.style.backgroundColor = "crimson";
-
-    delBtn.addEventListener("click", () => {
-      exams.splice(index, 1);
-      localStorage.setItem("examList", JSON.stringify(exams));
-      loadExams();
-      renderCalendar();
-    });
-
-    li.appendChild(delBtn);
     examList.appendChild(li);
   });
 }
 
-// ✅ 시험 등록
-form.addEventListener("submit", (e) => {
+// ✅ 등록 버튼 작동
+form.addEventListener("submit", function (e) {
   e.preventDefault();
 
   const newExam = {
-    title: titleInput.value,
-    date: dateInput.value,
+    name: examName.value,
+    date: examDate.value
   };
 
-  const exams = JSON.parse(localStorage.getItem("examList")) || [];
   exams.push(newExam);
-  localStorage.setItem("examList", JSON.stringify(exams));
+  localStorage.setItem("exams", JSON.stringify(exams));
 
-  titleInput.value = "";
-  dateInput.value = "";
+  examName.value = "";
+  examDate.value = "";
 
-  loadExams();
-  renderCalendar();
+  renderExams();
 });
 
-// ✅ 이번 달 캘린더 생성
-function renderCalendar() {
-  calendarGrid.innerHTML = "";
-
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = now.getMonth();
-
-  const firstDay = new Date(year, month, 1).getDay();
-  const lastDate = new Date(year, month + 1, 0).getDate();
-
-  const exams = JSON.parse(localStorage.getItem("examList")) || [];
-
-  for (let i = 0; i < firstDay; i++) {
-    const empty = document.createElement("div");
-    calendarGrid.appendChild(empty);
-  }
-
-  for (let day = 1; day <= lastDate; day++) {
-    const cell = document.createElement("div");
-    cell.className = "calendar-day";
-    cell.textContent = day;
-
-    const fullDate = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-
-    const hasExam = exams.some(e => e.date === fullDate);
-
-    if (hasExam) {
-      cell.classList.add("exam-day");
-    }
-
-    calendarGrid.appendChild(cell);
-  }
+// ✅ 삭제 기능
+function deleteExam(index) {
+  exams.splice(index, 1);
+  localStorage.setItem("exams", JSON.stringify(exams));
+  renderExams();
 }
 
-// ✅ 최초 실행
-loadExams();
-renderCalendar();
+// ✅ 처음 로딩 시 출력
+renderExams();

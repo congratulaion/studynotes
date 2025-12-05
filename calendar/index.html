@@ -1,44 +1,26 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <title>시험 일정 관리</title>
-  <link rel="stylesheet" href="calendar.css" />
+  <meta charset="UTF-8">
+  <title>📅 시험 일정 관리</title>
+  <link rel="stylesheet" href="calendar.css">
 </head>
 <body>
 
-  <header>
-    <h1>📅 시험 일정 관리</h1>
-  </header>
+<header>
+  <h1>📅 시험 일정 관리</h1>
+</header>
 
-  <main>
-    <!-- ✅ 시험 등록 -->
-    <section>
-      <h2>시험 등록</h2>
-      <form id="exam-form">
-        <input type="text" id="exam-title" placeholder="과목명" required />
-        <input type="date" id="exam-date" required />
-        <button type="submit">등록</button>
-      </form>
-    </section>
+<section>
+  <form id="exam-form">
+    <input type="text" id="exam-name" placeholder="시험 이름" required />
+    <input type="date" id="exam-date" required />
+    <button type="submit">등록</button>
+  </form>
 
-    <!-- ✅ 시험 리스트 + D-Day -->
-    <section>
-      <h2>등록된 시험</h2>
-      <ul id="exam-list"></ul>
-    </section>
+  <ul id="exam-list"></ul>
+</section>
 
-    <!-- ✅ 월간 캘린더 -->
-    <section id="calendar-section">
-      <h2>이번 달 캘린더</h2>
-      <div id="calendar-grid"></div>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2025 studynotes 시험 일정 관리</p>
-  </footer>
-
-  <script src="calendar.js"></script>
+<script src="calendar.js"></script>
 </body>
 </html>
