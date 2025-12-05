@@ -24,15 +24,18 @@
       </div>
     </section>
 
-    <section id="statistics-section" aria-labelledby="stats-heading">
-      <h2 id="stats-heading">오늘 통계</h2>
-      <p id="daily-total">00:00:00.00</p>
+    <section id="statistics-section">
+  <h2>오늘 통계 (10시간 기준 = 100%)</h2>
+  <p>오늘 총 공부 시간: <span id="daily-total">0h 0m 0s</span></p>
 
-      <div class="graph-box" aria-hidden="true">
-        <div id="study-graph" class="graph-bar"></div>
-      </div>
-      <!-- 그래프 기준은 JS에서 추가(또는 HTML에 직접 적어도 됨) -->
-    </section>
+  <div class="graph-box">
+    <div id="study-graph"></div>
+  </div>
+
+  <h3>📌 공부 기록</h3>
+  <ul id="study-log"></ul>
+</section>
+
   </main>
 
   <footer>
