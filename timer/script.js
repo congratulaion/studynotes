@@ -1,106 +1,114 @@
-// ====== 요소 가져오기 ======
-const timeDisplay = document.getElementById("time-display");
-const startBtn = document.getElementById("start-btn");
-const pauseBtn = document.getElementById("pause-btn");
-const stopBtn = document.getElementById("stop-btn");
-const resetBtn = document.getElementById("reset-btn");
-const dailyTotal = document.getElementById("daily-total");
-
-// ====== 타이머 변수 ======
+// ===============================
+// ✅ 전역 변수
+// ===============================
 let timer = null;
+let centiseconds = 0; // 0.01초 단위
+let totalCentiseconds = Number(localStorage.getItem("todayStudy")) || 0;
 
-let centiseconds = 0; // ✅ 0.01초 단위
-let seconds = 0;
-let minutes = 0;
-let hours = 0;
+// ===============================
+// ✅ DOM 요소
+// ===============================
+const timerDisplay = document.getElementById("timer");
+const startBtn = document.getElementById("start");
+const stopBtn = document.getElementById("stop");
+const resetBtn = document.getElementById("reset");
+const saveBtn = document.getElementById("save");
+const dailyTotal = document.getElementById("daily-total");
+const graphBar = document.getElementById("study-graph");
 
-let totalCentiseconds = 0; // 오늘 누적 공부 시간 (0.01초 단위)
+// ===============================
+// ✅ 타이머 표시 함수 (시:분:초.센티초)
+// ===============================
+function updateTimerDisplay() {
+  const h = Math.floor(centiseconds / 360000);
+  const m = Math.floor((centiseconds % 360000) / 6000);
+  const s = Math.floor((centiseconds % 6000) / 100);
+  const cs = centiseconds % 100;
 
-// ====== 시간 화면 업데이트 (HH:MM:SS.CC) ======
-function updateDisplay() {
-  const h = String(hours).padStart(2, "0");
-  const m = String(minutes).padStart(2, "0");
-  const s = String(seconds).padStart(2, "0");
-  const cs = String(centiseconds).padStart(2, "0");
+  const hStr = String(h).padStart(2, "0");
+  const mStr = String(m).padStart(2, "0");
+  const sStr = String(s).padStart(2, "0");
+  const csStr = String(cs).padStart(2, "0");
 
-  timeDisplay.textContent = `${h}:${m}:${s}.${cs}`;
+  timerDisplay.textContent = `${hStr}:${mStr}:${sStr}.${csStr}`;
 }
 
-// ====== 타이머 시작 ======
-startBtn.addEventListener("click", function () {
-  if (timer !== null) return; // 중복 실행 방지
+// ===============================
+// ✅ 오늘 통계 표시 함수 (시:분:초.센티초)
+// ===============================
+function updateDailyTotal() {
+  const h = Math.floor(totalCentiseconds / 360000);
+  const m = Math.floor((totalCentiseconds % 360000) / 6000);
+  const s = Math.floor((totalCentiseconds % 6000) / 100);
+  const cs = totalCentiseconds % 100;
 
-  timer = setInterval(function () {
-    centiseconds++; // ✅ 0.01초 증가
+  const hStr = String(h).padStart(2, "0");
+  const mStr = String(m).padStart(2, "0");
+  const sStr = String(s).padStart(2, "0");
+  const csStr = String(cs).padStart(2, "0");
 
-    if (centiseconds === 100) {
-      centiseconds = 0;
-      seconds++;
-    }
-
-    if (seconds === 60) {
-      seconds = 0;
-      minutes++;
-    }
-
-    if (minutes === 60) {
-      minutes = 0;
-      hours++;
-    }
-
-    updateDisplay();
-  }, 10); // ✅ 10ms = 0.01초
-});
-
-// ====== 일시정지 ======
-pauseBtn.addEventListener("click", function () {
-  clearInterval(timer);
-  timer = null;
-});
-
-// ====== 저장 후 정지 ======
-stopBtn.addEventListener("click", function () {
-  clearInterval(timer);
-  timer = null;
-
-  // ✅ 오늘 총 공부 시간 누적 (0.01초 단위)
-  const savedCentiseconds =
-    hours * 360000 + minutes * 6000 + seconds * 100 + centiseconds;
-
-  totalCentiseconds += savedCentiseconds;
-
-  const totalH = Math.floor(totalCentiseconds / 360000);
-  const totalM = Math.floor((totalCentiseconds % 360000) / 6000);
-
-  dailyTotal.textContent = `${totalH}h ${totalM}m`;
-
-  // ✅ 그래프 업데이트 (시간 기준)
-  updateGraph(totalH);
-
-  // ✅ 타이머 초기화
-  centiseconds = 0;
-  seconds = 0;
-  minutes = 0;
-  hours = 0;
-
-  updateDisplay();
-});
-
-// ====== 리셋 ======
-resetBtn.addEventListener("click", function () {
-  clearInterval(timer);
-  timer = null;
-
-  centiseconds = 0;
-  seconds = 0;
-  minutes = 0;
-  hours = 0;
-
-  updateDisplay();
-});
-
-// ====== ✅ 통계 그래프 업데이트 ======
-function updateGraph(hours) {
-  const percent = Math.min(hours * 10, 100); // 10시간 = 100%
-  document.getElementById("study-graph").style.width = percent + "%";
+  dailyTotal.textContent = `${hStr}:${mStr}:${sStr}.${csStr}`;
 }
+
+// ===============================
+// ✅ 부드러운 그래프 (10시간 = 100%)
+// ===============================
+function updateGraphByTime(totalCentiseconds) {
+  const maxCentiseconds = 10 * 360000; // 10시간
+  const percent = Math.min(
+    (totalCentiseconds / maxCentiseconds) * 100,
+    100
+  );
+
+  graphBar.style.width = percent + "%";
+}
+
+// ===============================
+// ✅ 시작 버튼
+// ===============================
+startBtn.addEventListener("click", () => {
+  if (timer !== null) return;
+
+  timer = setInterval(() => {
+    centiseconds++;
+    updateTimerDisplay();
+  }, 10); // 0.01초
+});
+
+// ===============================
+// ✅ 정지 버튼
+// ===============================
+stopBtn.addEventListener("click", () => {
+  clearInterval(timer);
+  timer = null;
+});
+
+// ===============================
+// ✅ 리셋 버튼
+// ===============================
+resetBtn.addEventListener("click", () => {
+  clearInterval(timer);
+  timer = null;
+  centiseconds = 0;
+  updateTimerDisplay();
+});
+
+// ===============================
+// ✅ 저장 버튼 (오늘 통계 + 그래프 갱신)
+// ===============================
+saveBtn.addEventListener("click", () => {
+  totalCentiseconds += centiseconds;
+  localStorage.setItem("todayStudy", totalCentiseconds);
+
+  centiseconds = 0;
+  updateTimerDisplay();
+  updateDailyTotal();
+  updateGraphByTime(totalCentiseconds);
+});
+
+// ===============================
+// ✅ 페이지 새로고침 시 오늘 기록 유지
+// ===============================
+updateDailyTotal();
+updateGraphByTime(totalCentiseconds);
+updateTimerDisplay();
