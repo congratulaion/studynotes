@@ -4,6 +4,29 @@ body {
   margin: 20px;
 }
 
+#timer-section {
+  width: 260px;
+  padding: 20px;
+  border: 2px solid #333;
+  border-radius: 10px;
+  text-align: center;
+  margin: 20px auto;
+  background-color: #f9f9f9;
+}
+
+#time-display {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+#timer-section button {
+  margin: 5px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
 #statistics-section {
   width: 260px;
   padding: 20px;
