@@ -8,26 +8,35 @@ const dailyTotal = document.getElementById("daily-total");
 
 // ====== 타이머 변수 ======
 let timer = null;
+
+let centiseconds = 0; // ✅ 0.01초 단위
 let seconds = 0;
 let minutes = 0;
 let hours = 0;
 
-let totalSeconds = 0; // 오늘 누적 공부 시간 (초)
+let totalCentiseconds = 0; // 오늘 누적 공부 시간 (0.01초 단위)
 
-// ====== 시간 화면 업데이트 ======
+// ====== 시간 화면 업데이트 (HH:MM:SS.CC) ======
 function updateDisplay() {
   const h = String(hours).padStart(2, "0");
   const m = String(minutes).padStart(2, "0");
   const s = String(seconds).padStart(2, "0");
-  timeDisplay.textContent = `${h}:${m}:${s}`;
+  const cs = String(centiseconds).padStart(2, "0");
+
+  timeDisplay.textContent = `${h}:${m}:${s}.${cs}`;
 }
 
 // ====== 타이머 시작 ======
 startBtn.addEventListener("click", function () {
-  if (timer !== null) return; // 이미 실행 중이면 중복 실행 방지
+  if (timer !== null) return; // 중복 실행 방지
 
   timer = setInterval(function () {
-    seconds++;
+    centiseconds++; // ✅ 0.01초 증가
+
+    if (centiseconds === 100) {
+      centiseconds = 0;
+      seconds++;
+    }
 
     if (seconds === 60) {
       seconds = 0;
@@ -40,7 +49,7 @@ startBtn.addEventListener("click", function () {
     }
 
     updateDisplay();
-  }, 1000);
+  }, 10); // ✅ 10ms = 0.01초
 });
 
 // ====== 일시정지 ======
@@ -54,22 +63,26 @@ stopBtn.addEventListener("click", function () {
   clearInterval(timer);
   timer = null;
 
-  // 오늘 총 공부 시간에 추가
-  const savedSeconds = hours * 3600 + minutes * 60 + seconds;
-  totalSeconds += savedSeconds;
+  // ✅ 오늘 총 공부 시간 누적 (0.01초 단위)
+  const savedCentiseconds =
+    hours * 360000 + minutes * 6000 + seconds * 100 + centiseconds;
 
-  const totalH = Math.floor(totalSeconds / 3600);
-  const totalM = Math.floor((totalSeconds % 3600) / 60);
+  totalCentiseconds += savedCentiseconds;
+
+  const totalH = Math.floor(totalCentiseconds / 360000);
+  const totalM = Math.floor((totalCentiseconds % 360000) / 6000);
 
   dailyTotal.textContent = `${totalH}h ${totalM}m`;
 
-  // ✅ 그래프 업데이트
+  // ✅ 그래프 업데이트 (시간 기준)
   updateGraph(totalH);
 
-  // 타이머 초기화
+  // ✅ 타이머 초기화
+  centiseconds = 0;
   seconds = 0;
   minutes = 0;
   hours = 0;
+
   updateDisplay();
 });
 
@@ -78,6 +91,7 @@ resetBtn.addEventListener("click", function () {
   clearInterval(timer);
   timer = null;
 
+  centiseconds = 0;
   seconds = 0;
   minutes = 0;
   hours = 0;
@@ -85,7 +99,7 @@ resetBtn.addEventListener("click", function () {
   updateDisplay();
 });
 
-// ====== ✅ 통계 그래프 업데이트 함수 ======
+// ====== ✅ 통계 그래프 업데이트 ======
 function updateGraph(hours) {
   const percent = Math.min(hours * 10, 100); // 10시간 = 100%
   document.getElementById("study-graph").style.width = percent + "%";
