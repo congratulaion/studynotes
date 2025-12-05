@@ -1,61 +1,48 @@
 const form = document.getElementById("exam-form");
-const examName = document.getElementById("exam-name");
-const examDate = document.getElementById("exam-date");
-const examList = document.getElementById("exam-list");
+const nameInput = document.getElementById("exam-name");
+const dateInput = document.getElementById("exam-date");
+const list = document.getElementById("exam-list");
 
+// localStorage 불러오기
 let exams = JSON.parse(localStorage.getItem("exams")) || [];
 
-// ✅ D-Day 계산 함수
-function getDDay(date) {
-  const today = new Date();
-  const exam = new Date(date);
-
-  today.setHours(0, 0, 0, 0);
-  exam.setHours(0, 0, 0, 0);
-
-  const diff = exam - today;
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-  if (days > 0) return `D-${days}`;
-  if (days === 0) return "D-DAY";
-  return `D+${Math.abs(days)}`;
-}
-
-// ✅ 화면 출력 함수
+// ✅ 화면에 시험 출력
 function renderExams() {
-  examList.innerHTML = "";
+  list.innerHTML = "";
 
   exams.forEach((exam, index) => {
     const li = document.createElement("li");
+    li.textContent = `${exam.name} - ${exam.date}`;
 
-    li.innerHTML = `
-      <span>${exam.name} (${exam.date}) - ${getDDay(exam.date)}</span>
-      <button class="delete-btn" onclick="deleteExam(${index})">삭제</button>
-    `;
+    const btn = document.createElement("button");
+    btn.textContent = "삭제";
+    btn.className = "delete-btn";
+    btn.onclick = () => deleteExam(index);
 
-    examList.appendChild(li);
+    li.appendChild(btn);
+    list.appendChild(li);
   });
 }
 
-// ✅ 등록 버튼 작동
+// ✅ 시험 추가
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
   const newExam = {
-    name: examName.value,
-    date: examDate.value
+    name: nameInput.value,
+    date: dateInput.value
   };
 
   exams.push(newExam);
   localStorage.setItem("exams", JSON.stringify(exams));
 
-  examName.value = "";
-  examDate.value = "";
+  nameInput.value = "";
+  dateInput.value = "";
 
   renderExams();
 });
 
-// ✅ 삭제 기능
+// ✅ 시험 삭제
 function deleteExam(index) {
   exams.splice(index, 1);
   localStorage.setItem("exams", JSON.stringify(exams));

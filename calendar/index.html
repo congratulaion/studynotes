@@ -2,8 +2,8 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>📅 시험 일정 관리</title>
-  <link rel="stylesheet" href="calendar.css">
+  <title>시험 일정 캘린더</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -11,16 +11,27 @@
   <h1>📅 시험 일정 관리</h1>
 </header>
 
-<section>
-  <form id="exam-form">
-    <input type="text" id="exam-name" placeholder="시험 이름" required />
-    <input type="date" id="exam-date" required />
-    <button type="submit">등록</button>
-  </form>
+<main>
+  <section id="calendar-section">
+    <h2>시험 추가</h2>
 
-  <ul id="exam-list"></ul>
-</section>
+    <form id="exam-form">
+      <input type="text" id="exam-name" placeholder="과목명" required>
+      <input type="date" id="exam-date" required>
+      <button type="submit">추가</button>
+    </form>
+  </section>
 
-<script src="calendar.js"></script>
+  <section id="list-section">
+    <h2>등록된 시험</h2>
+    <ul id="exam-list"></ul>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 studynotes 공부관리 앱</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
