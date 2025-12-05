@@ -10,14 +10,15 @@ const resetBtn = document.getElementById("reset-btn");
 
 const dailyTotal = document.getElementById("daily-total");
 const studyGraph = document.getElementById("study-graph");
+const studyLog = document.getElementById("study-log");
 
-// ✅ 시간 포맷 (시:분:초.밀리초)
+// ✅ 시간 포맷
 function formatTime(ms) {
   const totalSeconds = Math.floor(ms / 1000);
   const hours = Math.floor(totalSeconds / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
-  const milliseconds = Math.floor((ms % 1000) / 10); // 0~99
+  const milliseconds = Math.floor((ms % 1000) / 10);
 
   return (
     String(hours).padStart(2, "0") + ":" +
@@ -54,24 +55,35 @@ pauseBtn.addEventListener("click", () => {
   timerInterval = null;
 });
 
-// ✅ 저장 후 정지
+// ✅ ✅ ✅ 저장 + 과목 + 메모 기록
 stopBtn.addEventListener("click", () => {
   clearInterval(timerInterval);
   timerInterval = null;
 
-  const prev = Number(localStorage.getItem("todayTime")) || 0;
-  const total = prev + elapsedTime;
+  const subject = prompt("어떤 과목을 공부했어?");
+  const memo = prompt("무엇을 공부했는지 메모해줘!");
 
-  localStorage.setItem("todayTime", total);
+  const prevTotal = Number(localStorage.getItem("todayTime")) || 0;
+  const newTotal = prevTotal + elapsedTime;
+  localStorage.setItem("todayTime", newTotal);
+
+  const log = JSON.parse(localStorage.getItem("studyLog")) || [];
+  log.push({
+    subject: subject || "기타",
+    memo: memo || "메모 없음",
+    time: elapsedTime
+  });
+  localStorage.setItem("studyLog", JSON.stringify(log));
 
   updateDailyTotal();
-  updateGraph(total);
+  updateGraph(newTotal);
+  renderLog();
 
   elapsedTime = 0;
   timeDisplay.textContent = "00:00:00.00";
 });
 
-// ✅ ✅ ✅ 리셋 (지금 루니 문제 100% 여기서 해결됨)
+// ✅ ✅ ✅ 리셋 (전체 초기화)
 resetBtn.addEventListener("click", () => {
   clearInterval(timerInterval);
   timerInterval = null;
@@ -82,12 +94,14 @@ resetBtn.addEventListener("click", () => {
   timeDisplay.textContent = "00:00:00.00";
 
   localStorage.removeItem("todayTime");
-  dailyTotal.textContent = "0h 0m 0s";
+  localStorage.removeItem("studyLog");
 
+  dailyTotal.textContent = "0h 0m 0s";
   studyGraph.style.width = "0%";
+  studyLog.innerHTML = "";
 });
 
-// ✅ 오늘 통계 불러오기
+// ✅ 누적 시간 표시
 function updateDailyTotal() {
   const total = Number(localStorage.getItem("todayTime")) || 0;
 
@@ -99,6 +113,23 @@ function updateDailyTotal() {
   dailyTotal.textContent = `${h}h ${m}m ${s}s`;
 }
 
+// ✅ ✅ ✅ 공부 기록 렌더링 + 과목 비교 가능
+function renderLog() {
+  const log = JSON.parse(localStorage.getItem("studyLog")) || [];
+  studyLog.innerHTML = "";
+
+  log.forEach(item => {
+    const li = document.createElement("li");
+    const seconds = Math.floor(item.time / 1000);
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+
+    li.textContent = `📘 ${item.subject} - ${m}분 ${s}초 (${item.memo})`;
+    studyLog.appendChild(li);
+  });
+}
+
 // ✅ 처음 로딩 시 실행
 updateDailyTotal();
 updateGraph(Number(localStorage.getItem("todayTime")) || 0);
+renderLog();
