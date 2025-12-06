@@ -1,6 +1,6 @@
 const todoInput = document.getElementById("todo-input");
 const addButton = document.getElementById("add-button");//
-const todoList = document.getElementById("todo-list");
+const todoList = document.getElementById("my-todo-list");
 
 // 버튼 클릭
 addButton.addEventListener("click", addTodo);
@@ -45,4 +45,4 @@ function addTodo() {
     todoList.appendChild(li);
 
     todoInput.value = "";
-}
+};// 추가 버튼 오류 수정
