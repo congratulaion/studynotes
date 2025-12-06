@@ -47,12 +47,12 @@ h1, h2 {
     cursor: pointer;
 }
 
-#todo-list {
+#my-todo-list {
     list-style: none;
     padding: 0;
 }
 
-#todo-list li {
+#my-todo-list li {
     background: #eef1ff;
     padding: 10px;
     border-radius: 10px;
