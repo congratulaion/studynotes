@@ -1,83 +1,68 @@
 body {
-    margin: 0;
-    font-family: "Pretendard", sans-serif;
-    background-color: #f0f3ff;
+    font-family: sans-serif;
+    background-color: #f4f4f4;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    margin: 0;
 }
 
-.app-container {
-    display: flex;
-    gap: 30px;
-}
-
-.todo-box, .list-box {
+#todo-container {
     background: white;
     padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
 }
 
-h1, h2 {
-    text-align: center;
+#input-area{
+    display: flex;
     margin-bottom: 20px;
 }
 
-#input-area {
-    display: flex;
-}
-
 #todo-input {
-    flex: 1;
-    padding: 12px;
-    border: 1px solid #cdd4ff;
-    border-radius: 8px 0 0 8px;
-    outline: none;
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
 }
 
 #add-button {
-    background-color: #7b8cff;
+    background-color: #5cb85c;
     color: white;
     border: none;
-    padding: 12px 15px;
-    border-radius: 0 8px 8px 0;
+    padding: 10px 15px;
     cursor: pointer;
+    border-radius: 0 4px 4px 0; 
 }
 
 #todo-list {
-    list-style: none;
+    list-style: none; /* 불릿 기호 제거 */
     padding: 0;
 }
 
 #todo-list li {
-    background: #eef1ff;
+    background: #e9ecef;
     padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    border-radius: 4px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.todo-text {
-    flex: 1;
-    cursor: pointer;
-}
-
 .completed {
-    text-decoration: line-through;
-    color: gray;
+    text-decoration: line-through; /* 취소선 */
+    color: #888;
+    background: #f0f0f0;
 }
 
 .delete-btn {
-    margin-left: 10px;
-    background: #ff6b6b;
+    background: #dc3545;
     color: white;
     border: none;
-    padding: 5px 8px;
-    border-radius: 6px;
+    padding: 5px 10px;
     cursor: pointer;
+    border-radius: 4px;
 }
