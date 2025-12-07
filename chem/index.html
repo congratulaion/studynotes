@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>일반화학 — 개념 정리</title>
+
+  <!-- 스타일 -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- marked.js (Markdown → HTML) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- highlight.js (코드 하이라이트 optional) -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- 사이드바 -->
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>일반화학</h1>
+        <p class="sub">General Chemistry Notes</p>
+      </div>
+
+      <div class="controls">
+        <input id="search" type="text" placeholder="검색..." />
+      </div>
+
+      <div class="toc">
+        <h3>📘 목차</h3>
+        <ul id="tocList"></ul>
+      </div>
+    </aside>
+
+    <!-- 콘텐츠 영역 -->
+    <main class="content">
+      <div class="content-header">
+        <h2 id="pageTitle">일반화학 — 개념 정리</h2>
+        <div class="actions">
+          <button id="btnMd">MD 원본</button>
+          <button id="btnHtml">HTML 보기</button>
+        </div>
+      </div>
+
+      <div id="markdown" class="markdown-body"></div>
+      <pre id="raw" class="raw hidden"></pre>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
