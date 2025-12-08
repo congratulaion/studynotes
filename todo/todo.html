@@ -2,29 +2,43 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Study Todo</title>
-    <link rel="stylesheet" href="./todo/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To-Do & Memo</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <header class="header">
+            <div class="category-header">
+                <span class="category-icon">📱</span>
+                <span class="category-title">일반</span>
+                <button class="add-category-btn">+</button>
+            </div>
+        </header>
 
-<div class="app-container">
+        <section class="todo-section">
+            <ul id="todo-list" class="list-group">
+                </ul>
+            <div class="add-todo-area">
+                <input type="text" id="new-todo-input" placeholder="새 To-Do 항목 추가...">
+                <button id="add-todo-btn">추가</button>
+            </div>
+        </section>
 
-    <div class="todo-box">
-        <h1>📅 STUDY TODO</h1>
+        <hr>
 
-        <div id="input-area">
-            <input type="text" id="todo-input" placeholder="할 일 입력...">
-            <button id="add-button">추가</button>
-        </div>
+        <section class="memo-section">
+            <h2>📝 메모 / 일기</h2>
+            <div class="memo-form">
+                <input type="text" id="memo-title-input" placeholder="제목">
+                <textarea id="memo-content-input" placeholder="내용을 작성하세요..." rows="5"></textarea>
+                <button id="save-memo-btn">저장</button>
+            </div>
+            <div id="memo-list" class="list-group memo-list-group">
+                </div>
+        </section>
     </div>
 
-    <div class="list-box">
-        <h2>나의 할 일</h2>
-        <ul id="my-todo-list"></ul> 
-    </div>
-
-</div>
-
-<!-- JS는 body 끝에 두어 DOM 로딩 보장 -->
-<script src="./todo/script.js"></script>
-
+    <script src="script.js"></script>
+</body>
+</html>

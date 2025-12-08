@@ -1,84 +1,44 @@
-body {
-    margin: 0;
-    font-family: "Pretendard", sans-serif;
-    background-color: #f0f3ff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To-Do & Memo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="category-header">
+                <span class="category-icon">📱</span>
+                <span class="category-title">일반</span>
+                <button class="add-category-btn">+</button>
+            </div>
+        </header>
 
-.app-container {
-    display: flex;
-    gap: 30px;
-}
+        <section class="todo-section">
+            <ul id="todo-list" class="list-group">
+                </ul>
+            <div class="add-todo-area">
+                <input type="text" id="new-todo-input" placeholder="새 To-Do 항목 추가...">
+                <button id="add-todo-btn">추가</button>
+            </div>
+        </section>
 
-.todo-box, .list-box {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    width: 300px;
-}
+        <hr>
 
-h1, h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
+        <section class="memo-section">
+            <h2>📝 메모 / 일기</h2>
+            <div class="memo-form">
+                <input type="text" id="memo-title-input" placeholder="제목">
+                <textarea id="memo-content-input" placeholder="내용을 작성하세요..." rows="5"></textarea>
+                <button id="save-memo-btn">저장</button>
+            </div>
+            <div id="memo-list" class="list-group memo-list-group">
+                </div>
+        </section>
+    </div>
 
-#input-area {
-    display: flex;
-}
-
-#todo-input {
-    flex: 1;
-    padding: 12px;
-    border: 1px solid #cdd4ff;
-    border-radius: 8px 0 0 8px;
-    outline: none;
-}
-
-#add-button {
-    background-color: #7b8cff;
-    color: white;
-    border: none;
-    padding: 12px 15px;
-    border-radius: 0 8px 8px 0;
-    cursor: pointer;
-}
-
-#my-todo-list {
-    list-style: none;
-    padding: 0;
-}
-
-#my-todo-list li {
-    background: #eef1ff;
-    padding: 10px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.todo-text {
-    flex: 1;
-    cursor: pointer;
-}
-
-.completed {
-    text-decoration: line-through;
-    color: gray;
-}
-
-.delete-btn {
-    margin-left: 10px;
-    background: #ff6b6b;
-    color: white;
-    border: none;
-    padding: 5px 8px;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
+    <script src="script.js"></script>
+</body>
+</html>
