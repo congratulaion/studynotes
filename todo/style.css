@@ -1,68 +1,97 @@
 body {
-    font-family: sans-serif;
-    background-color: #f4f4f4;
+    background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+    font-family: 'Apple SD Gothic Neo', sans-serif;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    padding: 50px;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+#todoInput {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+#todoList {
+    list-style: none;
+    padding: 0;
     margin: 0;
 }
 
-#todo-container {
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
-}
-
-#input-area{
-    display: flex;
-    margin-bottom: 20px;
-}
-
-#todo-input {
-    flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px 0 0 4px;
-}
-
-#add-button {
-    background-color: #5cb85c;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 0 4px 4px 0; 
-}
-
-#todo-list {
-    list-style: none; /* 불릿 기호 제거 */
-    padding: 0;
-}
-
-#todo-list li {
-    background: #e9ecef;
-    padding: 10px;
-    margin-bottom: 8px;
-    border-radius: 4px;
+#todoList li {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    background: #f9f9f9;
+    border-radius: 15px;
+    font-size: 16px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.05);
 }
 
-.completed {
-    text-decoration: line-through; /* 취소선 */
-    color: #888;
-    background: #f0f0f0;
+.todo-buttons button {
+    margin-left: 8px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
 }
 
-.delete-btn {
-    background: #dc3545;
+.delete-btn { background: #ef5350; color: white; }
+.delete-btn:hover { background: #d32f2f; }
+
+.edit-btn { background: #42a5f5; color: white; }
+.edit-btn:hover { background: #1565c0; }
+
+/* 메모/일기 */
+.memo-card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.memo-card input, .memo-card textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid #bbb;
+    box-sizing: border-box;
+}
+
+.memo-card textarea { height: 120px; resize: none; }
+
+.memo-card button {
+    padding: 10px 18px;
+    background: #43a047;
     color: white;
     border: none;
-    padding: 5px 10px;
+    border-radius: 8px;
     cursor: pointer;
-    border-radius: 4px;
+    font-size: 15px;
 }
+
+.memo-card button:hover { background: #2e7d32; }
