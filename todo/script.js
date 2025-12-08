@@ -1,7 +1,6 @@
-<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', () => {
     const todoList = document.getElementById('todo-list');
-    const newTodoInput = document.getElementById('new-todo-input');
+    const newTodoInput = document.getElementById('new-todo-input'); // HTML에서 ID 통일
     const addTodoBtn = document.getElementById('add-todo-btn');
     
     const memoList = document.getElementById('memo-list');
@@ -16,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function loadTodos() {
         const todos = JSON.parse(localStorage.getItem('todos')) || [];
-        todoList.innerHTML = ''; // 기존 리스트 초기화
+        todoList.innerHTML = '';
         
         todos.forEach(todo => {
             renderTodoItem(todo);
@@ -34,12 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
             listItem.classList.add('completed');
         }
 
-        // 체크박스 아이콘
         const checkboxIcon = document.createElement('div');
         checkboxIcon.classList.add('checkbox-icon');
-        checkboxIcon.innerHTML = todo.completed ? '✓' : ''; // 완료 시 체크마크 표시
+        checkboxIcon.innerHTML = todo.completed ? '✓' : '';
 
-        // To-Do 텍스트
         const todoText = document.createElement('span');
         todoText.classList.add('todo-text');
         todoText.textContent = todo.text;
@@ -47,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
         listItem.appendChild(checkboxIcon);
         listItem.appendChild(todoText);
         
-        // 클릭 이벤트 리스너 (토글 기능)
         listItem.addEventListener('click', () => {
             toggleTodoCompleted(todo.text);
         });
@@ -57,12 +53,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * To-Do 항목의 완료 상태를 토글하고 로컬 저장소에 반영합니다.
-     * @param {string} todoText - 토글할 To-Do 항목의 텍스트
      */
     function toggleTodoCompleted(todoText) {
         let todos = JSON.parse(localStorage.getItem('todos')) || [];
         
-        // 텍스트를 기준으로 항목을 찾아 completed 상태를 반전
         todos = todos.map(todo => {
             if (todo.text === todoText) {
                 return { ...todo, completed: !todo.completed };
@@ -71,11 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         localStorage.setItem('todos', JSON.stringify(todos));
-        loadTodos(); // 화면 다시 렌더링
+        loadTodos();
     }
 
     /**
-     * 새로운 To-Do 항목을 추가합니다.
+     * 새로운 To-Do 항목을 추가합니다. (오류 수정 부분)
      */
     function addTodo() {
         const text = newTodoInput.value.trim();
@@ -87,10 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
         todos.push(newTodo);
         localStorage.setItem('todos', JSON.stringify(todos));
 
-        newTodoInput.value = ''; // 입력 필드 초기화
-        loadTodos(); // 화면 다시 렌더링
+        newTodoInput.value = '';
+        loadTodos();
     }
 
+    // 이벤트 리스너: 추가 버튼 클릭 및 Enter 키 입력으로 addTodo 실행
     addTodoBtn.addEventListener('click', addTodo);
     newTodoInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
@@ -106,9 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function loadMemos() {
         const memos = JSON.parse(localStorage.getItem('memos')) || [];
-        memoList.innerHTML = ''; // 기존 리스트 초기화
+        memoList.innerHTML = '';
 
-        // 최신 메모가 위에 오도록 역순으로 렌더링
         memos.slice().reverse().forEach(memo => {
             renderMemoItem(memo);
         });
@@ -116,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * 새로운 메모 항목을 DOM에 렌더링합니다.
-     * @param {object} memo - { title: string, content: string, date: string } 형태의 메모 객체
      */
     function renderMemoItem(memo) {
         const memoItem = document.createElement('div');
@@ -165,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         memoTitleInput.value = '';
         memoContentInput.value = '';
-        loadMemos(); // 화면 다시 렌더링
+        loadMemos();
     }
 
     saveMemoBtn.addEventListener('click', saveMemo);
@@ -175,16 +168,3 @@ document.addEventListener('DOMContentLoaded', () => {
     loadTodos();
     loadMemos();
 });
-=======
-const todoInput = document.getElementById('todo-input');
-const addButton = document.getElementById('add-button');//
-const todoList = document.getElementById('todo-list');
-
-addButton.addEventListener('click', addTodo);
-
-todoInput.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') {
-        addTodo();
-    }
-})
->>>>>>> 2eda2a182768db144b44c5ee11039806a837ddef
