@@ -8,16 +8,16 @@ body {
 
 .container {
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     background: white;
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
-h1 {
+h1, h2 {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     font-weight: 700;
 }
 
@@ -41,31 +41,57 @@ h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-    margin-bottom: 12px;
+    padding: 12px 15px;
+    margin-bottom: 10px;
     background: #f9f9f9;
     border-radius: 15px;
     font-size: 16px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.05);
-    transition: 0.2s;
 }
 
-#todoList li:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-}
-
-.delete-btn {
-    background: #ef5350;
-    color: white;
+.todo-buttons button {
+    margin-left: 8px;
+    padding: 5px 10px;
+    border-radius: 8px;
     border: none;
-    padding: 7px 12px;
-    border-radius: 10px;
     cursor: pointer;
     font-size: 13px;
-    transition: 0.2s;
 }
 
-.delete-btn:hover {
-    background: #d32f2f;
+.delete-btn { background: #ef5350; color: white; }
+.delete-btn:hover { background: #d32f2f; }
+
+.edit-btn { background: #42a5f5; color: white; }
+.edit-btn:hover { background: #1565c0; }
+
+/* 메모/일기 */
+.memo-card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
+
+.memo-card input, .memo-card textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid #bbb;
+    box-sizing: border-box;
+}
+
+.memo-card textarea { height: 120px; resize: none; }
+
+.memo-card button {
+    padding: 10px 18px;
+    background: #43a047;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.memo-card button:hover { background: #2e7d32; }

@@ -2,14 +2,24 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>모던 투두리스트</title>
+    <title>스터디 투두리스트 + 메모</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <h1>📚 스터디 투두리스트</h1>
-        <input id="todoInput" type="text" placeholder="할 일을 입력하고 Enter를 누르세요">
+        
+        <!-- 투두 입력 -->
+        <input id="todoInput" type="text" placeholder="할 일을 입력하고 Enter">
         <ul id="todoList"></ul>
+
+        <!-- 메모/일기 영역 -->
+        <h2>📝 메모 / 일기</h2>
+        <div class="memo-card">
+            <input id="memoTitle" type="text" placeholder="제목">
+            <textarea id="memoContent" placeholder="내용을 작성하세요"></textarea>
+            <button id="saveMemoBtn">저장</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
