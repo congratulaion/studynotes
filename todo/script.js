@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', () => {
     const todoList = document.getElementById('todo-list');
     const newTodoInput = document.getElementById('new-todo-input');
@@ -174,3 +175,16 @@ document.addEventListener('DOMContentLoaded', () => {
     loadTodos();
     loadMemos();
 });
+=======
+const todoInput = document.getElementById('todo-input');
+const addButton = document.getElementById('add-button');//
+const todoList = document.getElementById('todo-list');
+
+addButton.addEventListener('click', addTodo);
+
+todoInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        addTodo();
+    }
+})
+>>>>>>> 2eda2a182768db144b44c5ee11039806a837ddef

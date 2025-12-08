@@ -1,0 +1,94 @@
+:root{
+  --bg: #f2f6ff;
+  --card: #ffffff;
+  --accent: #7b8cff;
+  --muted: #6f7384;
+  --pill: #eef1ff;
+  --glass: rgba(17,24,39,0.04);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%; margin:0; font-family: "Pretendard", "Noto Sans KR", system-ui, sans-serif; background:var(--bg); color:#0f1724}
+
+.app{
+  display:flex;
+  gap:24px;
+  padding:24px;
+  align-items:flex-start;
+  min-height:100vh;
+}
+
+/* 사이드바 */
+.sidebar{
+  width:300px;
+  background:var(--card);
+  border-radius:14px;
+  padding:18px;
+  box-shadow: 0 12px 30px rgba(30,40,80,0.06);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.brand h1{margin:0; font-size:18px}
+.brand .sub{margin:6px 0 0; color:var(--muted); font-size:13px}
+
+.controls{display:flex; gap:8px; margin-top:8px}
+.controls input{
+  flex:1; padding:8px 10px; border-radius:10px; border:1px solid #e7eafc; outline:none;
+}
+.controls button{padding:8px 10px; border-radius:10px; border:none; background:var(--accent); color:white; cursor:pointer}
+
+/* 목차 */
+.toc{margin-top:6px}
+.toc h3{margin:0 0 8px 0; font-size:14px; color:var(--muted)}
+.toc ul{list-style:none; padding-left:0; max-height:60vh; overflow:auto}
+.toc li{padding:8px 10px; border-radius:8px; cursor:pointer; color:#1f2340; margin-bottom:6px;}
+.toc li:hover{background:#f5f7ff}
+
+/* 콘텐츠 영역 */
+.content{
+  flex:1;
+  background:var(--card);
+  border-radius:14px;
+  padding:22px;
+  box-shadow: 0 12px 30px rgba(30,40,80,0.04);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.content-header{display:flex; justify-content:space-between; align-items:center}
+.content-header h2{margin:0; font-size:18px}
+.actions button{margin-left:8px; padding:8px 10px; border-radius:10px; border:1px solid #eee; background:transparent; cursor:pointer}
+
+/* markdown content */
+.markdown-body{
+  line-height:1.8;
+  color:#0b1220;
+  padding-top:6px;
+}
+
+.markdown-body h1{font-size:22px; margin-top:12px}
+.markdown-body h2{font-size:18px; margin-top:14px}
+.markdown-body h3{font-size:16px; margin-top:12px}
+.markdown-body p{font-size:15px}
+.markdown-body ul{padding-left:1.1rem}
+.markdown-body pre{
+  background:#0b1220; color:#e6eef8; padding:12px; border-radius:8px; overflow:auto;
+}
+.markdown-body code{background:#f5f7ff; padding:2px 6px; border-radius:6px}
+
+/* 수식 블록 여백 */
+.markdown-body .math { margin: 10px 0; }
+
+/* raw viewer */
+.raw{margin-top:10px; background:#f7f9ff; padding:12px; border-radius:8px}
+.hidden{display:none}
+
+/* 반응형 */
+@media (max-width:900px){
+  .app{flex-direction:column; padding:16px}
+  .sidebar{width:100%}
+  .content{width:100%}
+}
