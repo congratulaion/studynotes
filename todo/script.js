@@ -19,8 +19,6 @@ document.getElementById("addBtn").addEventListener("click", () => {
     input.value = ""; // 입력창 초기화
 });
 
-
-// 메모 저장 기능 (원하는 기능에 맞게 확장 가능)
 document.getElementById("saveMemoBtn").addEventListener("click", () => {
     const title = document.getElementById("memoTitle").value;
     const content = document.getElementById("memoContent").value;
