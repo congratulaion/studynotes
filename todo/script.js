@@ -1,27 +1,22 @@
-document.getElementById("addBtn").addEventListener("click", () => {
-    const input = document.getElementById("todoInput");
-    const text = input.value.trim();
+const input = document.getElementById("todoInput");
+const list = document.getElementById("todoList");
 
-    if (text === "") return;
+input.addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        const text = input.value.trim();
+        if (text === "") return;
 
-    const li = document.createElement("li");
-    li.innerHTML = `
-        ${text}
-        <button class="delete-btn">삭제</button>
-    `;
+        const li = document.createElement("li");
+        li.textContent = text;
 
-    li.querySelector(".delete-btn").addEventListener("click", () => {
-        li.remove();
-    });
+        const delBtn = document.createElement("button");
+        delBtn.textContent = "삭제";
+        delBtn.className = "delete-btn";
+        delBtn.addEventListener("click", () => li.remove());
 
-    document.getElementById("todoList").appendChild(li);
+        li.appendChild(delBtn);
+        list.appendChild(li);
 
-    input.value = ""; // 입력창 초기화
-});
-
-document.getElementById("saveMemoBtn").addEventListener("click", () => {
-    const title = document.getElementById("memoTitle").value;
-    const content = document.getElementById("memoContent").value;
-
-    alert("메모가 저장되었습니다!\n\n제목: " + title);
+        input.value = ""; // 입력창 초기화
+    }
 });
