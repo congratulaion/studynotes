@@ -1,3 +1,4 @@
+/* 전체 초기화 */
 * {
   margin: 0;
   padding: 0;
@@ -5,61 +6,121 @@
   font-family: Arial, sans-serif;
 }
 
+/* body 전체 레이아웃 */
 body {
-  background: linear-gradient(135deg, #fdfbfb, #ebedee);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.container {
-  background: #ffffff;
-  padding: 40px;
-  border-radius: 16px;
-  width: 400px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  margin-bottom: 10px;
-}
-
-.sub-text {
-  color: #666;
-  margin-bottom: 30px;
-}
-
-.card-area {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  min-height: 100vh;       
+  background-color: #f4f6ff;
+  color: #222;
 }
 
+/* header */
+header {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+header h1 {
+  font-size: 48px;  
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+header p {
+  font-size: 20px;  
+  font-weight: 500;
+}
+
+/* main 박스 */
+.container {
+  background: #ffffff;
+  margin: 30px auto;        
+  padding: 50px;            
+  border-radius: 16px;
+  width: 700px;             
+  max-width: 92%;           
+  flex: 1;                  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+/* 카드 영역 */
+.card-area {
+  display: flex;
+  flex-direction: column;   
+  gap: 30px;               
+  width: 90%;
+  margin-top: 30px;
+}
+
+/* 카드 스타일 */
 .card {
   display: block;
-  padding: 15px;
-  border-radius: 12px;
-  background: #f3f4f6;
+  padding: 50px;            
+  border-radius: 15px;
+  background-color: #ffffff;
   text-decoration: none;
-  color: #111;
-  font-size: 18px;
+  color: #333;
+  font-size: 24px;          
   font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
   transition: 0.2s ease;
 }
 
 .card:hover {
-  background: #dbeafe;
-  transform: scale(1.03);
+  background-color: #e9edff;
+  transform: translateY(-5px);
 }
 
+/* 홈으로 이동 버튼 */
 .back {
-  margin-top: 30px;
+  margin-top: 40px;      /* math 카드 아래와 간격 */
 }
 
 .back a {
   text-decoration: none;
-  color: #2563eb;
+  color: #4a6cff;
   font-weight: bold;
+  font-size: 18px;
+}
+
+/* footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #777;
+  font-size: 16px;
+}
+
+/* 반응형 */
+@media (max-width: 500px) {
+  .container {
+    width: 92%;
+    padding: 30px;
+  }
+
+  header h1 {
+    font-size: 36px;
+  }
+
+  header p {
+    font-size: 16px;
+  }
+
+  .card {
+    padding: 30px;
+    font-size: 20px;
+  }
+
+  .back a {
+    font-size: 16px;
+  }
+
+  footer {
+    font-size: 14px;
+  }
 }

@@ -16,7 +16,7 @@ header, footer {
 }
 
 header h1 {
-  font-size: 48px;   /* ✅ 기본 h1 크기 */
+  font-size: 48px;   
   font-weight: bold;
   margin: 0;
 }
