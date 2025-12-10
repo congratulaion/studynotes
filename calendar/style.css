@@ -50,3 +50,17 @@ li {
   border-radius: 4px;
   cursor: pointer;
 }
+
+.back {
+  margin-top: 40px;    
+  display: flex;
+  justify-content: center;  /* math 카드 아래와 간격 */
+}
+
+.back a {
+  text-decoration: none;
+  color: #5162ae;
+  font-weight: bold;
+  font-size: 18px;
+  align-self: flex-end;
+}

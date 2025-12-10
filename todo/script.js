@@ -56,3 +56,5 @@ document.getElementById("saveMemoBtn").addEventListener("click", () => {
     document.getElementById("memoTitle").value = "";
     document.getElementById("memoContent").value = "";
 });
+const goHomeBtn = document.getElementById("go-home");
+

@@ -116,6 +116,20 @@ section {
   text-align: center;
 }
 
+.back {
+  margin-top: 40px;    
+  display: flex;
+  justify-content: center;  /* math 카드 아래와 간격 */
+}
+
+.back a {
+  text-decoration: none;
+  color: #5162ae;
+  font-weight: bold;
+  font-size: 18px;
+  align-self: flex-end;
+}
+
 /* 반응형: 작은 화면에선 너비 줄이기 */
 @media (max-width: 400px) {
   section { width: 92%; padding: 12px; }
