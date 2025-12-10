@@ -1,236 +1,73 @@
-:root{
-  --bg: #f2f6ff;
-  --card: #ffffff;
-  --accent: #7b8cff;
-  --muted: #6f7384;
-  --pill: #eef1ff;
-  --glass: rgba(17,24,39,0.04);
+body {
+  margin: 0;
+  background: #f4f6fb;
+  font-family: "Noto Sans KR", sans-serif;
+  color: #222;
 }
 
-*{box-sizing:border-box}
-html,body{
-  height:100%;
-  margin:0;
-  font-family: "Pretendard", "Noto Sans KR", system-ui, sans-serif;
-  background:var(--bg);
-  color:#0f1724;
+header {
+  background: #4b6aff;
+  padding: 16px;
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
 }
 
-.app{
-  display:flex;
-  gap:24px;
-  padding:24px;
-  align-items:flex-start;
-  min-height:100vh;
+.bio-layout {
+  display: flex;
+  height: calc(100vh - 80px);
 }
 
-/* ============================= */
-/* 🔵 1. 사이드바 (목차 영역)     */
-/* ============================= */
-
-.sidebar{
-  width:300px;
-  background:var(--card);
-  border-radius:14px;
-  padding:18px;
-  box-shadow: 0 12px 30px rgba(30,40,80,0.06);
-  display:flex;
-  flex-direction:column;
-  gap:16px;
+.bio-nav {
+  width: 260px;
+  background: #fff;
+  border-right: 1px solid #ddd;
+  padding: 10px;
+  overflow-y: auto;
 }
 
-.brand h1{
-  margin:0;
-  font-size:20px;
-  font-weight:700;
-}
-.brand .sub{
-  margin-top:5px;
-  color:var(--muted);
-  font-size:13px;
-}
-
-.controls{
-  display:flex;
-  gap:8px;
+.bio-nav-item {
+  display: block;
+  padding: 12px 14px;
+  margin-bottom: 8px;
+  font-size: 15px;
+  border-radius: 8px;
+  background: #eef1ff;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.controls input{
-  flex:1;
-  padding:8px 12px;
-  border-radius:10px;
-  border:1px solid #e2e6fb;
-  background:#f8f9ff;
-  outline:none;
-}
-.controls button{
-  padding:8px 12px;
-  border-radius:10px;
-  border:none;
-  background:var(--accent);
-  color:white;
-  cursor:pointer;
-  font-size:14px;
+.bio-nav-item:hover {
+  background: #dce2ff;
 }
 
-/* 목차 제목 */
-.toc h3{
-  margin:0 0 8px 0;
-  font-size:14px;
-  color:var(--muted);
+.bio-nav-item.active {
+  background: #4b6aff;
+  color: white;
 }
 
-/* 목차 리스트 */
-.toc ul{
-  list-style:none;
-  padding-left:0;
-  max-height:65vh;
-  overflow:auto;
-  margin:0;
+.bio-content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
-.toc li{
-  padding:8px 10px;
-  border-radius:8px;
-  cursor:pointer;
-  color:#1f2340;
-  margin-bottom:6px;
-  background:transparent;
-  transition:0.15s;
-}
-.toc li:hover{
-  background:#f5f7ff;
-  transform:translateX(3px);
+.bio-content h1,
+.bio-content h2,
+.bio-content h3 {
+  color: #3b4d99;
+  margin-top: 24px;
 }
 
-
-/* ============================= */
-/* 🔵 2. 콘텐츠 영역 (markdown)   */
-/* ============================= */
-
-.content{
-  flex:1;
-  background:var(--card);
-  border-radius:14px;
-  padding:28px;
-  box-shadow: 0 12px 30px rgba(30,40,80,0.04);
-  display:flex;
-  flex-direction:column;
-  gap:18px;
+.bio-content ul {
+  margin-left: 20px;
 }
 
-.content-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-.content-header h2{
-  margin:0;
-  font-size:20px;
-  font-weight:600;
-}
-
-.actions button{
-  margin-left:8px;
-  padding:8px 10px;
-  border-radius:10px;
-  border:1px solid #eee;
-  background:transparent;
-  cursor:pointer;
-  font-size:14px;
-}
-
-/* ============================= */
-/* 🔵 3. Markdown 렌더링 스타일   */
-/* ============================= */
-
-.markdown-body{
-  line-height:1.8;
-  color:#0b1220;
-  padding-top:6px;
-  font-size:16px;
-}
-
-.markdown-body h1{
-  font-size:24px;
-  margin-top:12px;
-  border-bottom:1px solid #eee;
-  padding-bottom:6px;
-}
-
-.markdown-body h2{
-  font-size:20px;
-  margin-top:16px;
-}
-
-.markdown-body h3{
-  font-size:18px;
-  margin-top:14px;
-}
-
-.markdown-body p{
-  font-size:16px;
-  margin:10px 0;
-}
-
-.markdown-body ul{
-  padding-left:1.4rem;
-  margin-top:6px;
-}
-
-.markdown-body li{
-  margin-bottom:4px;
-}
-
-.markdown-body pre{
-  background:#0b1220;
-  color:#e6eef8;
-  padding:14px;
-  border-radius:8px;
-  overflow:auto;
-}
-
-.markdown-body code{
-  background:#eef1ff;
-  padding:3px 6px;
-  border-radius:6px;
-  font-size:14px;
-}
-
-/* 수식 여백 */
-.markdown-body .math{
-  margin:12px 0;
-}
-
-/* RAW Viewer */
-.raw{
-  margin-top:10px;
-  background:#f7f9ff;
-  padding:12px;
-  border-radius:8px;
-  height:300px;
-  width:100%;
-  font-size:15px;
-  border:1px solid #d9def7;
-}
-.hidden{
-  display:none;
-}
-
-/* ============================= */
-/* 🔵 4. 반응형                   */
-/* ============================= */
-
-@media (max-width:900px){
-  .app{
-    flex-direction:column;
-    padding:16px;
-  }
-  .sidebar{
-    width:100%;
-  }
-  .content{
-    width:100%;
-  }
+.bio-content li {
+  margin-bottom: 6px;
 }
