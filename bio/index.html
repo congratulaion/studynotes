@@ -3,25 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>생물학 개념 정리</title>
-
-  <!-- 스타일 연결 -->
+  <title>일반생물학 노트</title>
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Markdown 렌더링 라이브러리 -->
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
-
 <body>
-  <h1>생물학 개념 정리</h1>
 
-  <!-- Markdown 입력창 -->
-  <textarea id="md-input" placeholder="여기에 생물학 개념을 Markdown으로 입력하세요"></textarea>
+  <header>
+    <h1>일반생물학 개념 노트</h1>
+  </header>
 
-  <!-- 결과 영역 -->
-  <div id="content"></div>
+  <div class="bio-layout">
+    <nav id="bio-nav" class="bio-nav"></nav>
+    <main id="bio-content" class="bio-content"></main>
+  </div>
 
-  <!-- 스크립트 연결 -->
   <script src="script.js"></script>
 </body>
 </html>
