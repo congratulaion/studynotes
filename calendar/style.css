@@ -6,16 +6,29 @@ body {
 
 header, footer {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-size: 48px;   
+  font-weight: bold;
+  margin: 0;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
 }
 
 section {
-  width: 300px;
-  margin: 20px auto;
-  padding: 20px;
+  width: 500px;
+  max-width: 92%;
+  background-color: #ffffff;
+  padding: 58px;
   border-radius: 10px;
-  background-color: white;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
 }
 
 form {
