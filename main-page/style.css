@@ -1,31 +1,47 @@
+/* 전체 바디 */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f4f6f8;
+  color: #222;
   text-align: center;
 }
 
+/* header */
 header {
   background-color: #4a6cf7;
   color: white;
-  padding: 30px 0;
+  padding: 45px 0; /* 상하 여백 확대 */
 }
 
+header h1 {
+  font-size: 48px;   /* 제목 확대 */
+  font-weight: bold;
+  margin: 0;
+}
+
+header p {
+  font-size: 20px;   /* 서브텍스트 확대 */
+  font-weight: 500;
+  margin-top: 12px;
+}
+
+/* main 메뉴 */
 .menu {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  max-width: 500px;
+  gap: 30px;          /* 카드 간격 확대 */
+  max-width: 700px;    /* 전체 메뉴 폭 확대 */
   margin: 50px auto;
 }
 
+/* 카드 스타일 */
 .card {
   display: block;
-  padding: 30px;
+  padding: 50px;       /* 카드 내부 여백 확대 */
   background-color: white;
   border-radius: 15px;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 24px;     /* 카드 글자 확대 */
   color: #333;
   font-weight: bold;
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -37,7 +53,31 @@ header {
   background-color: #e9edff;
 }
 
+/* footer */
 footer {
   margin-top: 50px;
   color: #777;
+  font-size: 16px;      /* 글자 약간 확대 */
+}
+
+/* 반응형 */
+@media (max-width: 400px) {
+  .menu {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 92%;
+  }
+
+  .card {
+    padding: 30px;
+    font-size: 20px;
+  }
+
+  header h1 {
+    font-size: 36px;
+  }
+
+  header p {
+    font-size: 16px;
+  }
 }
