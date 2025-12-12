@@ -1,6 +1,9 @@
 # Study Notes
 공부에 필요한 모든 것을 한 곳에서 관리할 수 있는 스터디 관리 웹사이트
 
+## Acknowledgements
+This project includes code and ideas generated with assistance from ChatGPT (OpenAI).
+
 # 목차
 0. Git/버전 관리
 1. 웹사이트 소개
@@ -12,7 +15,7 @@
 # 0. Git/버전 관리
 1. 브랜치 전략: main, develop, feature(명시되지 않은 브랜치도 있었음)로 나누어 작업함
 2. 각 기능을 추가하거나 수정할 때마다 커밋함.
-3. 총 커밋 횟수: 113 commits
+3. 총 커밋 횟수: 115 commits
    
 # 1. 웹사이트 소개
 Study Notes란 공부에 필요한 모든 것을 한 곳에서 관리할 수 있는 스터디 관리 웹사이트입니다.
