@@ -15,7 +15,7 @@ This project includes code and ideas generated with assistance from ChatGPT (Ope
 # 0. Git/버전 관리
 1. 브랜치 전략: main, develop, feature(명시되지 않은 브랜치도 있었음)로 나누어 작업함
 2. 각 기능을 추가하거나 수정할 때마다 커밋함.
-3. 총 커밋 횟수: 115 commits
+3. 총 커밋 횟수: 116 commits
    
 # 1. 웹사이트 소개
 Study Notes란 공부에 필요한 모든 것을 한 곳에서 관리할 수 있는 스터디 관리 웹사이트입니다.
@@ -58,8 +58,8 @@ Study Notes란 공부에 필요한 모든 것을 한 곳에서 관리할 수 있
   
 # 3. 설치 및 실행
 1. 프로젝트 폴더를 클론 또는 다운로드
-2. 로컬 환경에서 index.html(메인 페이지) 열기
-3. 각 기능은 브라우저 내에서 바로 사용 가능
+2. 로컬 환경에서 main-page/index.html(메인 페이지) 열기
+3. 메인 페이지에서 각 기능 페이지로 이동하려면 버튼 클릭 (note, todo, timer, calendar)
 
 # 4. 저장 방식
 1. Todo, Memo, Timer, Calendar 기록은 모두 브라우저 localStorage를 사용함
